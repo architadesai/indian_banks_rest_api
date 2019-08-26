@@ -12,15 +12,28 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import datetime
 import os
 
+
+
+# YAML configurations
+import yaml
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print("Base dir: ", BASE_DIR)
+
+# 'src/config/config.yml'
+CONFIG_FILE = os.path.join(BASE_DIR, 'config', 'config.yml')
+
+# config_data will contain configuration details like credentials, API Keys, Secret Keys
+with open(CONFIG_FILE) as f:
+    config_data = yaml.safe_load(f)
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+cjs-vpqknsz63i&rz_d9qqsg)uf)%r*7f2o45h-w$fz(798ma'
+SECRET_KEY = config_data['SECRET_KEY']
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,10 +92,10 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'indianbanks',
-        'USER': 'archita',
-        'PASSWORD': 'archita',
-        'HOST': 'localhost',
+        'NAME': config_data['POSTGRES_DB_CREDENTIALS']['DATABASE_NAME'],
+        'USER': config_data['POSTGRES_DB_CREDENTIALS']['USERNAME'],
+        'PASSWORD': config_data['POSTGRES_DB_CREDENTIALS']['PASSWORD'],
+        'HOST': config_data['POSTGRES_DB_CREDENTIALS']['HOST'],
         'PORT': '',
     }
 }

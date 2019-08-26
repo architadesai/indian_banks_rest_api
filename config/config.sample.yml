@@ -1,0 +1,12 @@
+# This is a same config.yml file
+# Create a copy of this file with filename = 'config.yml' and add your credentials in it
+# Warning: Don't commit the 'config.yml' file that you create!
+
+SECRET_KEY: 'enterYourDjangoSecretKeyHere'
+
+
+POSTGRES_DB_CREDENTIALS:
+  DATABASE_NAME: 'enterYourDatabaseNameHere'
+  USERNAME: 'enterYourDatabaseUsernameHere'
+  PASSWORD: 'enterYourDatabasePasswordHere'
+  HOST: 'localhost or hosting-server-url'
