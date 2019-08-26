@@ -1,6 +1,6 @@
 json_token=$(curl -k 'http://indian-banks-service.herokuapp.com/api/token/' \
 -X POST -H 'Content-Type: application/json' \
--d '{"username":"archita77", "password":"archita77"}') && token=$(echo $json | sed "s/{.*\"token\":\"\([^\"]*\).*}/\1/g" | jq -r '.access')
+-d '{"username":"archita77", "password":"archita77"}') && token=$(echo $json | sed "s/{.*\"token\":\"\([^\"]*\).*}/\1/g")
 
 
 # Get Access token from returned object in json_token
